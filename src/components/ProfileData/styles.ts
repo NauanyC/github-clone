@@ -32,10 +32,11 @@ export const Flex = styled.div`
 `;
 
 export const Avatar = styled.img`
-  width: 100%;
+  width: 16%;
+  border-radius: 50%;
 `;
 
-export const Row = styled.div``;
+export const Row = styled.ul``;
 
 export const Column = styled.div``;
 
