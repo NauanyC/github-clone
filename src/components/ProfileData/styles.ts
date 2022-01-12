@@ -9,7 +9,27 @@ import {
 
 export const Container = styled.div``;
 
-export const Flex = styled.div``;
+export const Flex = styled.div`
+  display: flex;
+  align-items: center;
+
+  > div {
+    margin-left: 24px;
+
+    > h1 {
+      font-size: 26px;
+      line-height: 1.25;
+      color: var(--grayDark);
+      font-weight: 600;
+    }
+
+    > h2 {
+      font-size: 20px;
+      color: var(--username);
+      font-weight: 300;
+    }
+  }
+`;
 
 export const Avatar = styled.img`
   width: 100%;
