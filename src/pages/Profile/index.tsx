@@ -1,7 +1,15 @@
 import * as React from 'react';
 import ProfileData from '../../components/ProfileData';
+import RandomCalendar from '../../components/RandomCalendar';
 import RepositoryCard from '../../components/RepositoryCard';
-import { Container, LeftSide, Main, RightSide, Repos } from './styles';
+import {
+  Container,
+  LeftSide,
+  Main,
+  RightSide,
+  Repos,
+  CalendarHeading,
+} from './styles';
 
 const Profile: React.FC = () => {
   const user = {
@@ -41,6 +49,11 @@ const Profile: React.FC = () => {
               ))}
             </div>
           </Repos>
+
+          <CalendarHeading>
+            Random Calendar (do not represent actual data)
+          </CalendarHeading>
+          <RandomCalendar />
         </RightSide>
       </Main>
     </Container>
