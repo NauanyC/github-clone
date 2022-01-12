@@ -33,6 +33,7 @@ export const TopSide = styled.div`
     font-size: 12px;
     color: var(--gray);
     letter-spacing: 0.8px;
+    word-break: break-all;
   }
 `;
 export const BottomSide = styled.div`

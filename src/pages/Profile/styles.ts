@@ -20,6 +20,8 @@ export const Main = styled.div`
 `;
 
 export const LeftSide = styled.div`
+  padding: 0 var(--horizontalPadding);
+
   @media (min-width: 768px) {
     width: 25%;
   }
@@ -44,5 +46,10 @@ export const Repos = styled.div`
     display: grid;
     grid-gap: 16px;
     grid-template-columns: 1fr;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: minmax(min-content, max-content);
+    }
   }
 `;
