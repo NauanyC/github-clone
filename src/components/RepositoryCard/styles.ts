@@ -10,7 +10,24 @@ export const Container = styled.div`
   border: 1px solid var(--border);
   border-radius: 6px;
 `;
-export const TopSide = styled.div``;
+export const TopSide = styled.div`
+  > header {
+    display: flex;
+    align-items: center;
+    > a {
+      margin-left: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--link);
+      text-decoration: none;
+
+      &::focus,
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+`;
 export const BottomSide = styled.div``;
 
 export const iconsCSS = css`
