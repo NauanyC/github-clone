@@ -1,7 +1,6 @@
 import * as React from 'react';
 import ProfileData from '../../components/ProfileData';
-import RepositoryCard from '../../components/RepoCard';
-import RepositoryCardProps from '../../components/RepoCard';
+import RepositoryCard from '../../components/RepositoryCard';
 import { Container, LeftSide, Main, RightSide, Repos } from './styles';
 
 const Profile: React.FC = () => {
