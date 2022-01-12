@@ -27,8 +27,49 @@ export const TopSide = styled.div`
       }
     }
   }
+
+  > p {
+    margin: 8px 0 16px;
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.8px;
+  }
 `;
-export const BottomSide = styled.div``;
+export const BottomSide = styled.div`
+  > ul {
+    display: flex;
+    align-items: center;
+
+    > li {
+      display: flex;
+      align-items: center;
+      margin-right: 16px;
+
+      > span {
+        margin-left: 5px;
+        font-size: 12px;
+        color: var(--gray);
+      }
+    }
+  }
+
+  .language {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &.other {
+      background: var(--other-language);
+    }
+    &.javascript {
+      background: var(--javascript);
+    }
+    &.typescript {
+      background: var(--typescript);
+    }
+  }
+`;
 
 export const iconsCSS = css`
   width: 16px;
