@@ -36,9 +36,32 @@ export const Avatar = styled.img`
   border-radius: 50%;
 `;
 
-export const Row = styled.ul``;
+export const Row = styled.ul`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
 
-export const Column = styled.div``;
+  > li {
+    display: flex;
+    align-items: center;
+
+    > span {
+      font-size: 14px;
+      color: var(--grey);
+    }
+
+    > * {
+      margin-right: 5px;
+    }
+
+    b {
+      margin-bottom: -1.5px;
+    }
+  }
+`;
+
+export const Column = styled.ul``;
 
 export const iconsCSS = css`
   width: 16px;
