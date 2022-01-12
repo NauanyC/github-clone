@@ -3,8 +3,7 @@ import Heatmap from 'react-calendar-heatmap';
 import { isBefore, subYears, isSameDay, addDays } from 'date-fns';
 
 import { Container } from './styles';
-
-type HeatmapValue = { date: Date; count: number };
+import { HeatmapValue } from '../../interfaces/heatmap';
 
 const RandomCalendar: React.FC = () => {
   const endDate = new Date();
