@@ -101,12 +101,22 @@ export const iconsCSS = css`
   flex-shrink: 0;
 `;
 
-export const PeopleIcon = styled(RiGroupLine)``;
+export const PeopleIcon = styled(RiGroupLine)`
+  ${iconsCSS}
+`;
 
-export const CompanyIcon = styled(RiBuilding4Line)``;
+export const CompanyIcon = styled(RiBuilding4Line)`
+  ${iconsCSS}
+`;
 
-export const LocationIcon = styled(RiMapPin2Line)``;
+export const LocationIcon = styled(RiMapPin2Line)`
+  ${iconsCSS}
+`;
 
-export const EmailIcon = styled(RiMailLine)``;
+export const EmailIcon = styled(RiMailLine)`
+  ${iconsCSS}
+`;
 
-export const BlogIcon = styled(RiLinksLine)``;
+export const BlogIcon = styled(RiLinksLine)`
+  ${iconsCSS}
+`;

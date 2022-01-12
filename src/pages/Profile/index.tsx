@@ -1,6 +1,8 @@
 import * as React from 'react';
 import ProfileData from '../../components/ProfileData';
-import { Container, LeftSide, Main, RightSide } from './styles';
+import RepositoryCard from '../../components/RepoCard';
+import RepositoryCardProps from '../../components/RepoCard';
+import { Container, LeftSide, Main, RightSide, Repos } from './styles';
 
 const Profile: React.FC = () => {
   const user = {
@@ -16,13 +18,31 @@ const Profile: React.FC = () => {
     blog: 'https://www.linkedin.com/in/nauany-costa/',
   };
 
+  const repository = {
+    username: 'Nau',
+    reponame: 'CatMania',
+    description: 'Blog about cute cats',
+    language: 'Typescript',
+    stars: 156,
+    forks: 12,
+  };
+
   return (
     <Container>
       <Main>
         <LeftSide>
           <ProfileData user={user} />
         </LeftSide>
-        <RightSide />
+        <RightSide>
+          <Repos>
+            <h2>Random repos</h2>
+            <div>
+              {[0, 1, 2, 3, 4, 5].map((repo) => (
+                <RepositoryCard key={repo} repository={repository} />
+              ))}
+            </div>
+          </Repos>
+        </RightSide>
       </Main>
     </Container>
   );
