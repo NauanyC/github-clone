@@ -61,7 +61,24 @@ export const Row = styled.ul`
   }
 `;
 
-export const Column = styled.ul``;
+export const Column = styled.ul`
+  li {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  li + li {
+    margin-top: 10px;
+  }
+
+  span {
+    margin-left: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+`;
 
 export const iconsCSS = css`
   width: 16px;
