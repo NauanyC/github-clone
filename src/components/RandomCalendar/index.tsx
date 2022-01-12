@@ -1,6 +1,6 @@
-import { subYears } from 'date-fns';
 import React from 'react';
 import Heatmap from 'react-calendar-heatmap';
+import { isBefore, subYears, isSameDay, addDays } from 'date-fns';
 
 import { Container } from './styles';
 
@@ -10,7 +10,7 @@ const RandomCalendar: React.FC = () => {
   const endDate = new Date();
   const startDate = subYears(endDate, 1);
 
-  const values: Array<HeatmapValue> = [];
+  const values: Array<HeatmapValue> = generateHeatmapValues(startDate, endDate);
 
   values.push({ date: new Date(), count: 874 });
 
@@ -36,6 +36,22 @@ const RandomCalendar: React.FC = () => {
       </div>
     </Container>
   );
+};
+
+const generateHeatmapValues = (
+  startDate: Date,
+  endDate: Date
+): Array<HeatmapValue> => {
+  const values: Array<HeatmapValue> = [];
+  let currentDate = startDate;
+
+  while (isBefore(currentDate, endDate) || isSameDay(currentDate, endDate)) {
+    const count = Math.round(Math.random() * 4);
+    values.push({ date: currentDate, count });
+    currentDate = addDays(currentDate, 1);
+  }
+
+  return values;
 };
 
 export default RandomCalendar;
