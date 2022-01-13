@@ -9,6 +9,8 @@ import {
   RightSide,
   Repos,
   CalendarHeading,
+  Tab,
+  RepoIcon,
 } from './styles';
 
 const Profile: React.FC = () => {
@@ -34,6 +36,14 @@ const Profile: React.FC = () => {
     forks: 12,
   };
 
+  const TabContent = () => (
+    <div className="content">
+      <RepoIcon />
+      <span className="label">Repositories</span>
+      <span className="number">35</span>
+    </div>
+  );
+
   return (
     <Container>
       <Main>
@@ -41,6 +51,10 @@ const Profile: React.FC = () => {
           <ProfileData user={user} />
         </LeftSide>
         <RightSide>
+          <Tab className="mobile">
+            <TabContent />
+            <span className="line" />
+          </Tab>
           <Repos>
             <h2>Random repos</h2>
             <div>
