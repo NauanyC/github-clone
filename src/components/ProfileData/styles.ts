@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import {
   RiGroupLine,
   RiBuilding4Line,
@@ -6,6 +6,7 @@ import {
   RiMailLine,
   RiLinksLine,
 } from 'react-icons/ri';
+import { iconsCSS } from '../../assets/styles/icons';
 
 export const Container = styled.div``;
 
@@ -92,13 +93,6 @@ export const Column = styled.ul`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-`;
-
-export const iconsCSS = css`
-  width: 16px;
-  height: 16px;
-  fill: var(--icon);
-  flex-shrink: 0;
 `;
 
 export const PeopleIcon = styled(RiGroupLine)`
