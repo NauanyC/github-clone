@@ -11,7 +11,6 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Profile />} />
-        <Route path="/:username/:reponame" element={<Profile />} />
         <Route path="/:username/:reponame" element={<Repo />} />
       </Routes>
       <GlobalStyles />
