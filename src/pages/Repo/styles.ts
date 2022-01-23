@@ -46,7 +46,22 @@ export const BreadCrumb = styled.div`
   }
 `;
 
-export const Stats = styled.div``;
+export const Stats = styled.ul`
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+
+  > li {
+    display: flex;
+    align-items: center;
+    margin-right: 9px;
+
+    > * {
+      margin-right: 7px;
+      color: var(--gray);
+    }
+  }
+`;
 
 export const LinkButton = styled.a``;
 
