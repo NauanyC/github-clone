@@ -63,7 +63,27 @@ export const Stats = styled.ul`
   }
 `;
 
-export const LinkButton = styled.a``;
+export const LinkButton = styled.a`
+  margin-top: 24px;
+  background-color: var(--gray-dark);
+  padding: 12px 17px;
+  border-radius: 24px;
+  width: max-content;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+
+  > span {
+    color: var(--primary);
+  }
+
+  > svg {
+    fill: var(--primary);
+    margin-right: 10px;
+    margin-top: 3px;
+  }
+`;
 
 export const RepoIcon = styled(RiBookMarkLine)`
   ${iconsCSS}
