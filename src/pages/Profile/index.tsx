@@ -1,4 +1,6 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import ProfileData from '../../components/ProfileData';
 import RandomCalendar from '../../components/RandomCalendar';
 import RepositoryCard from '../../components/RepositoryCard';
@@ -14,6 +16,19 @@ import {
 } from './styles';
 
 const Profile: React.FC = () => {
+  const { username = 'NauanyC' } = useParams();
+
+  useEffect(() => {
+    Promise.all([
+      axios.get(`https://api.github.com/users/${username}`),
+      axios.get(`https://api.github.com/users/${username}/repos`),
+    ]).then(async (responses) => {
+      console.log(responses);
+    });
+  }, []);
+
+  console.log('username');
+  console.log(username);
   const user = {
     username: 'Nau',
     name: 'Nauany Costa',
