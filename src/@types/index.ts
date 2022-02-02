@@ -5,7 +5,20 @@ export interface APIUser {
   following: number;
   public_repos: number;
   avatar_url: string;
-  blog: string;
+  blog?: string;
+  company?: string;
+  email?: string;
+  location?: string;
 }
 
-export interface APIRepository {}
+export interface APIRepository {
+  name: string;
+  owner: {
+    login: string;
+  };
+  stargazers_count: number;
+  forks: number;
+  html_url: string;
+  language?: string;
+  description?: string;
+}

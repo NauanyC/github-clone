@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import ProfileData from '../../components/ProfileData';
@@ -14,42 +14,34 @@ import {
   Tab,
   RepoIcon,
 } from './styles';
+import { APIRepository, APIUser } from '../../@types';
+
+interface Data {
+  user?: APIUser;
+  repositories?: APIRepository[];
+  error?: string;
+}
 
 const Profile: React.FC = () => {
   const { username = 'NauanyC' } = useParams();
+  const [data, setData] = useState<Data>();
 
   useEffect(() => {
     Promise.all([
       axios.get(`https://api.github.com/users/${username}`),
       axios.get(`https://api.github.com/users/${username}/repos`),
     ]).then(async (responses) => {
-      console.log(responses);
+      const [userResponse, repositoriesResponse] = responses;
+      if (userResponse.status === 404) {
+        setData({ error: 'User not found...' });
+        return;
+      }
+
+      const user = await userResponse.data.json();
+      const repositories = await repositoriesResponse.data.json();
+      setData({ user, repositories, error: '' });
     });
-  }, []);
-
-  console.log('username');
-  console.log(username);
-  const user = {
-    username: 'Nau',
-    name: 'Nauany Costa',
-    avatarUrl:
-      'https://www.upwork.com/catalog-images-resized/fced3f99b8f9a11ef0ba0ab6166eff97/large',
-    followers: 3156,
-    following: 1,
-    company: 'Microsoft',
-    location: 'Minas Gerais, Brazil',
-    email: 'nauanycc@outlook.com.br',
-    blog: 'https://www.linkedin.com/in/nauany-costa/',
-  };
-
-  const repository = {
-    username: 'Nau',
-    reponame: 'CatMania',
-    description: 'Blog about cute cats',
-    language: 'Typescript',
-    stars: 156,
-    forks: 12,
-  };
+  }, [setData, username]);
 
   const TabContent = () => (
     <div className="content">
@@ -70,7 +62,7 @@ const Profile: React.FC = () => {
       </Tab>
       <Main>
         <LeftSide>
-          <ProfileData user={user} />
+          <ProfileData user={data?.user} />
         </LeftSide>
         <RightSide>
           <Tab className="mobile">
@@ -80,8 +72,8 @@ const Profile: React.FC = () => {
           <Repos>
             <h2>Random repos</h2>
             <div>
-              {[0, 1, 2, 3, 4, 5].map((repo) => (
-                <RepositoryCard key={repo} repository={repository} />
+              {[data?.repositories.map((repo) => (
+                <RepositoryCard key={repo.name} repository={repo} />
               ))}
             </div>
           </Repos>
