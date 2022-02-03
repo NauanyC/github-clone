@@ -8,4 +8,5 @@ export interface User {
   location?: string;
   email?: string;
   blog?: string;
+  repositoriesCount: number;
 }

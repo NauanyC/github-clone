@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import {
+  extractRepositoriesFromApiResponse,
+  extractUserFromApiResponse,
+} from '../../utils/helpers';
 import ProfileData from '../../components/ProfileData';
 import RandomCalendar from '../../components/RandomCalendar';
 import RepositoryCard from '../../components/RepositoryCard';
@@ -15,10 +19,12 @@ import {
   RepoIcon,
 } from './styles';
 import { APIRepository, APIUser } from '../../@types';
+import { Repository } from '../../interfaces/repository';
+import { User } from '../../interfaces/user';
 
 interface Data {
-  user?: APIUser;
-  repositories?: APIRepository[];
+  user?: User;
+  repositories?: Array<Repository>;
   error?: string;
 }
 
@@ -28,26 +34,41 @@ const Profile: React.FC = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get(`https://api.github.com/users/${username}`),
-      axios.get(`https://api.github.com/users/${username}/repos`),
+      axios.get<APIUser>(`https://api.github.com/users/${username}`),
+      axios.get<Array<APIRepository>>(
+        `https://api.github.com/users/${username}/repos`
+      ),
     ]).then(async (responses) => {
       const [userResponse, repositoriesResponse] = responses;
+
       if (userResponse.status === 404) {
         setData({ error: 'User not found...' });
         return;
       }
 
-      const user = await userResponse.data.json();
-      const repositories = await repositoriesResponse.data.json();
+      const user = extractUserFromApiResponse(userResponse.data);
+
+      const repositories = extractRepositoriesFromApiResponse(
+        repositoriesResponse.data
+      );
+
       setData({ user, repositories, error: '' });
     });
   }, [setData, username]);
+
+  if (data?.error) {
+    return <h1>{data.error}</h1>;
+  }
+
+  if (!data?.user || !data?.repositories) {
+    return <h1>Loading...</h1>;
+  }
 
   const TabContent = () => (
     <div className="content">
       <RepoIcon />
       <span className="label">Repositories</span>
-      <span className="number">35</span>
+      <span className="number">{data?.user?.repositoriesCount}</span>
     </div>
   );
 
@@ -72,8 +93,11 @@ const Profile: React.FC = () => {
           <Repos>
             <h2>Random repos</h2>
             <div>
-              {[data?.repositories.map((repo) => (
-                <RepositoryCard key={repo.name} repository={repo} />
+              {data?.repositories.map((repository) => (
+                <RepositoryCard
+                  key={`${repository.username}/${repository.reponame}`}
+                  repository={repository}
+                />
               ))}
             </div>
           </Repos>
